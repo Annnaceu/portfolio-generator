@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de {{.Name}}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            transition: background-color 0.6s ease;
+        }
+
+        :root {
+            --theme-color: {{.ThemeColor}};
+            --hover-color: {{.HoverColor}};
+            --primary-text-color: #333;
+            --secondary-text-color: #777;
+            --background-color: #f5f5f5;
+        }
+
+        .portfolio-container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--theme-color);
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: var(--theme-color);
+            margin-top: 10px;
+            text-transform: uppercase;
+            animation: textColorChange 5s infinite alternate, backgroundColorChange 3s infinite alternate;
+        }
+
+        @keyframes textColorChange {
+            0% { color: var(--theme-color); }
+            100% { color: var(--hover-color); }
+        }
+
+        @keyframes backgroundColorChange {
+            0% { background-color: var(--theme-color); }
+            100% { background-color: #fff; }
+        }
+
+        header h2 {
+            font-size: 1.3em;
+            color: var(--secondary-text-color);
+            font-weight: 300;
+        }
+
+        section {
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInSection 2s forwards;
+        }
+
+        @keyframes fadeInSection {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        section h3 {
+            font-size: 1.5em;
+            color: var(--theme-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 3px;
+            background-color: var(--theme-color);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.5s ease;
+        }
+
+        section h3:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        section p {
+            line-height: 1.7;
+            font-size: 1.2em;
+            color: var(--primary-text-color);
+        }
+
+        .projects-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 3s forwards;
+        }
+
+        .project-item {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .project-item:hover {
+            background-color: var(--hover-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--secondary-text-color);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .projects-list {
+                grid-template-columns: 1fr;
+            }
+
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            section p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+        <header>
+            <img src="{{.Image}}" alt="Foto de {{.Name}}">
+            <h1>{{.Name}}</h1>
+            <h2>{{.Title}}</h2>
+        </header>
+        <section>
+            <h3>Sobre Mim</h3>
+            <p>{{.Summary}}</p>
+        </section>
+        <section>
+            <h3>Projetos</h3>
+            <div class="projects-list">
+                {{if .Project1}}<div class="project-item">{{.Project1}}</div>{{end}}
+                {{if .Project2}}<div class="project-item">{{.Project2}}</div>{{end}}
+                {{if .Project3}}<div class="project-item">{{.Project3}}</div>{{end}}
+            </div>
+        </section>
+        <footer>
+            <p>&copy; {{.Name}} - Portfólio Gerado</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+

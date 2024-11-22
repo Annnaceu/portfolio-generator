@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Criação de Portfólio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Crie seu Portfólio</h2>
+        <form method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="title">Título do Portfólio:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="summary">Descrição Sobre Você:</label>
+            <textarea id="summary" name="summary" required></textarea>
+
+            <label for="project1">Projeto 1:</label>
+            <input type="text" id="project1" name="project1">
+
+            <label for="project2">Projeto 2:</label>
+            <input type="text" id="project2" name="project2">
+
+            <label for="project3">Projeto 3:</label>
+            <input type="text" id="project3" name="project3">
+
+            <label for="image">Foto de Perfil (URL):</label>
+            <input type="text" id="image" name="image">
+
+            <label for="themeColor">Escolha uma Cor de Tema:</label>
+            <select id="themeColor" name="themeColor">
+                <option value="#ff5733">Vermelho</option>
+                <option value="#33c1ff">Azul</option>
+                <option value="#28a745">Verde</option>
+                <option value="#ffc107">Amarelo</option>
+            </select>
+
+            <label for="layout">Escolha um Layout:</label>
+            <select id="layout" name="layout">
+                <option value="classico">Clássico</option>
+                <option value="moderno">Moderno</option>
+            </select>
+
+            <button type="submit">Gerar Portfólio</button>
+        </form>
+    </div>
+</body>
+</html>

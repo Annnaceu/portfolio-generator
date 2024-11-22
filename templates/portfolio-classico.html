@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio de {{.Name}}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            transition: background-color 0.6s ease;
+        }
+
+        :root {
+            --theme-color: {{.ThemeColor}};
+            --hover-color: {{.HoverColor}};
+            --primary-text-color: #333;
+            --secondary-text-color: #777;
+        }
+
+        .portfolio-container {
+            width: 80%;
+            max-width: 900px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid var(--theme-color);
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: var(--theme-color);
+            margin-top: 10px;
+            animation: textColorChange 5s infinite alternate;
+        }
+
+        @keyframes textColorChange {
+            0% { color: var(--theme-color); }
+            100% { color: var(--hover-color); }
+        }
+
+        header h2 {
+            font-size: 1.3em;
+            color: var(--secondary-text-color);
+            font-weight: 300;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        section h3 {
+            font-size: 1.5em;
+            color: var(--theme-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            line-height: 1.7;
+            font-size: 1.2em;
+            color: var(--primary-text-color);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.9em;
+            color: var(--secondary-text-color);
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            section p {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portfolio-container">
+        <header>
+            <img src="{{.Image}}" alt="Foto de {{.Name}}">
+            <h1>{{.Name}}</h1>
+            <h2>{{.Title}}</h2>
+        </header>
+        <section>
+            <h3>Sobre Mim</h3>
+            <p>{{.Summary}}</p>
+        </section>
+        <section>
+            <h3>Projetos</h3>
+            <ul>
+                {{if .Project1}}<li>{{.Project1}}</li>{{end}}
+                {{if .Project2}}<li>{{.Project2}}</li>{{end}}
+                {{if .Project3}}<li>{{.Project3}}</li>{{end}}
+            </ul>
+        </section>
+        <footer>
+            <p>&copy; {{.Name}} - Portfólio Gerado</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
