@@ -9,8 +9,14 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
+            background: linear-gradient(to right, var(--theme-color), var(--hover-color));
+            color: white;
             transition: background-color 0.6s ease;
+        }
+
+        @keyframes backgroundColorChange {
+            0% { background: var(--theme-color); }
+            100% { background: var(--hover-color); }
         }
 
         :root {
@@ -18,7 +24,6 @@
             --hover-color: {{.HoverColor}};
             --primary-text-color: #333;
             --secondary-text-color: #777;
-            --background-color: #f5f5f5;
         }
 
         .portfolio-container {
@@ -29,12 +34,17 @@
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 2s ease;
+            animation: fadeIn 2s ease, colorShift 10s infinite alternate-reverse;
         }
 
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes colorShift {
+            0% { background: var(--theme-color); color: #fff; }
+            100% { background: var(--hover-color); color: black; }
         }
 
         header {
@@ -50,11 +60,12 @@
             border: 5px solid var(--theme-color);
             object-fit: cover;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 3s infinite ease-in-out;
         }
 
-        header img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         header h1 {
@@ -62,17 +73,12 @@
             color: var(--theme-color);
             margin-top: 10px;
             text-transform: uppercase;
-            animation: textColorChange 5s infinite alternate, backgroundColorChange 3s infinite alternate;
+            animation: textColorChange 5s infinite alternate;
         }
 
         @keyframes textColorChange {
             0% { color: var(--theme-color); }
             100% { color: var(--hover-color); }
-        }
-
-        @keyframes backgroundColorChange {
-            0% { background-color: var(--theme-color); }
-            100% { background-color: #fff; }
         }
 
         header h2 {
@@ -83,7 +89,6 @@
 
         section {
             margin-bottom: 30px;
-            opacity: 0;
             animation: fadeInSection 2s forwards;
         }
 
@@ -92,46 +97,10 @@
             100% { opacity: 1; }
         }
 
-        section h3 {
-            font-size: 1.5em;
-            color: var(--theme-color);
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-
-        section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 100%;
-            height: 3px;
-            background-color: var(--theme-color);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.5s ease;
-        }
-
-        section h3:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-
-        section p {
-            line-height: 1.7;
-            font-size: 1.2em;
-            color: var(--primary-text-color);
-        }
-
         .projects-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            opacity: 0;
-            animation: fadeIn 3s forwards;
         }
 
         .project-item {
@@ -163,19 +132,6 @@
             .projects-list {
                 grid-template-columns: 1fr;
             }
-
-            header img {
-                width: 100px;
-                height: 100px;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            section p {
-                font-size: 1.1em;
-            }
         }
     </style>
 </head>
@@ -204,5 +160,6 @@
     </div>
 </body>
 </html>
+
 
 
